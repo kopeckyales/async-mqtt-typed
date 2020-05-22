@@ -3,6 +3,7 @@
   "rules": {
       "linebreak-style": "off",
       "indent": "off",
-      "no-unused-vars": "warn"
+      "no-unused-vars": "warn",
+      "no-use-before-define": ["error", { "functions": false }]
   }
 }
