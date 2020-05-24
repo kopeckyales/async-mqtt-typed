@@ -1,8 +1,13 @@
 {
   "name": "async-mqtt-typed",
   "version": "0.1.0",
+  "description": "Code generator for strongly typed async-mqtt wrapper",
   "main": "src/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kopeckyales/async-mqtt-typed.git"
+  },
   "scripts": {
     "lint": "npx eslint --ext .js,.ts ./src/",
     "start": "node ./src/index.js"
