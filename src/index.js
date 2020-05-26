@@ -16,6 +16,10 @@ function getTopics() {
   return getConfig().topics || [];
 }
 
+function getTopicVariables(topic) {
+  return topic.variables || [];
+}
+
 function getOutputAbsolutePath() {
   return path.resolve(process.cwd(), getConfig().outputPath);
 }
@@ -39,7 +43,7 @@ function generateSubscriptionsConst() {
 function generateRegexMap() {
   return [
     'const SubscriptionToTopicRegexMap = {',
-    ...getTopics().map((t) => `  '${t.name}': /^${mqttTopicToRegexpr(t.name)}$/`),
+    ...getTopics().map((t) => `  '${t.name}': /^${mqttTopicToRegexpr(t.name)}$/,`),
     '};',
   ].join('\n');
 }
@@ -47,7 +51,7 @@ function generateRegexMap() {
 function generatePrepareFunctionOverloads() {
   return [
     ...getTopics().map((t) => `function prepareSubscribtion(topic:'${t.name}', callback:(payload:${t.payloadType}${
-      t.variables.map((x) => `, ${x}:string`).join('')})=>void): void;`),
+      getTopicVariables(t).map((x) => `, ${x}:string`).join('')})=>void): void;`),
     `function prepareSubscribtion<T extends keyof typeof SubscriptionToTopicRegexMap>(
   topic:T,
   callback:(arg0:any, ...args: string[])=>void,

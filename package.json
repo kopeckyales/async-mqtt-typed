@@ -1,6 +1,6 @@
 {
   "name": "async-mqtt-typed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Code generator for strongly typed async-mqtt wrapper",
   "main": "src/index.js",
   "license": "MIT",
